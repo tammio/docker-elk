@@ -1,6 +1,7 @@
 ---
 version: '3'
 services:
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${TAG}
     environment: ['http.host=0.0.0.0', 'transport.host=127.0.0.1', 'ELASTIC_PASSWORD=${ELASTIC_PASSWORD}']
@@ -18,6 +19,7 @@ services:
     image: docker.elastic.co/logstash/logstash:${TAG}
     environment:
       - 'xpack.monitoring.elasticsearch.password=${ELASTIC_PASSWORD}'
+      
     # Provide a simple pipeline configuration for Logstash with a bind-mounted file.
     volumes:
       - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf

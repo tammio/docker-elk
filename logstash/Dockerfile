@@ -6,3 +6,4 @@ FROM docker.elastic.co/logstash/logstash:5.6.3
 
 RUN logstash-plugin install logstash-codec-netflow
 RUN logstash-plugin install logstash-filter-translate
+RUN logstash-plugin install logstash-filter-cidr

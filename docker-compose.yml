@@ -11,20 +11,23 @@ services:
     networks: ['stack']
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:${TAG}
+    build: kibana/
+    volumes:
+      - ./kibana/config/:/usr/share/kibana/config
     environment: ['ELASTICSEARCH_PASSWORD=${ELASTIC_PASSWORD}']
     ports: ['127.0.0.1:5601:5601']
     networks: ['stack']
     depends_on: ['elasticsearch']
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:${TAG}
+    build: logstash/
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
     environment:
       - 'xpack.monitoring.elasticsearch.password=${ELASTIC_PASSWORD}'
-      
+    
     # Provide a simple pipeline configuration for Logstash with a bind-mounted file.
-    volumes:
-      - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     networks: ['stack']
     depends_on: ['elasticsearch', 'setup_logstash']
 

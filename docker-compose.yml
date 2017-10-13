@@ -4,7 +4,7 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${TAG}
-    environment: ['http.host=0.0.0.0', 'transport.host=127.0.0.1', 'ELASTIC_PASSWORD=${ELASTIC_PASSWORD}']
+    environment: ['ELASTIC_PASSWORD=${ELASTIC_PASSWORD}']
     ports: ['127.0.0.1:9200:9200']
     networks: ['stack']
 

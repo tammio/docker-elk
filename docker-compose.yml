@@ -26,9 +26,13 @@ services:
       - ./logstash/pipeline:/usr/share/logstash/pipeline
     environment:
       - 'xpack.monitoring.elasticsearch.password=${ELASTIC_PASSWORD}'
+    ports: 
+      - '127.0.0.1:5000:5000'
+      - '127.0.0.1:5001:5001'
+      - '127.0.0.1:5002:5002/udp'
     
     # Provide a simple pipeline configuration for Logstash with a bind-mounted file.
     networks: ['stack']
-    depends_on: ['elasticsearch', 'setup_logstash']
+    depends_on: ['elasticsearch']
 
 networks: {stack: {}}

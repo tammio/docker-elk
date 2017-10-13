@@ -5,3 +5,4 @@ FROM docker.elastic.co/logstash/logstash:5.6.3
 # Example: RUN logstash-plugin install logstash-filter-json
 
 RUN logstash-plugin install logstash-codec-netflow
+RUN logstash-plugin install logstash-filter-translate

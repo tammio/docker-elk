@@ -19,8 +19,8 @@ services:
   logstash:
     build: logstash/
     volumes:
-      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./logstash/config/:/usr/share/logstash/config/
+      - ./logstash/pipeline/:/usr/share/logstash/pipeline/
     ports:
       - '0.0.0.0:5000:5000'
       - '0.0.0.0:5001:5001'

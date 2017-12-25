@@ -4,15 +4,17 @@ services:
   elasticsearch:
     build: elasticsearch/
     volumes:
-     - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    ports: ['0.0.0.0:9200:9200']
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - '0.0.0.0:9200:9200'	 	
     networks: ['stack']
 
   kibana:
     build: kibana/
     volumes:
       - ./kibana/config/:/usr/share/kibana/config
-    ports: ['0.0.0.0:5601:5601']
+    ports:
+      - '0.0.0.0:5601:5601'	 
     networks: ['stack']
     depends_on: ['elasticsearch']
 

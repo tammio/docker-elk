@@ -27,5 +27,9 @@ services:
       - '0.0.0.0:5000:5000'
     networks: ['stack']
     depends_on: ['elasticsearch']
+    
+    curator:
+    build: curator/
+    depends_on: ['elasticsearch']
 
 networks: {stack: {}}
